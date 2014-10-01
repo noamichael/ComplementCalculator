@@ -8,6 +8,10 @@ import java.util.Scanner;
  */
 public class ComplementCalculator {
 
+    /**
+     * Prompts the user for input and calculates the difference of the two
+     * numbers using nine's complement.
+     */
     public void startCalculationProcess() {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -35,6 +39,13 @@ public class ComplementCalculator {
 
     }
 
+    /**
+     * Parses a number and performs the actual operation
+     *
+     * @param minuend The number to subtract from
+     * @param subtrahend The number to be subtracted
+     * @return
+     */
     private Long parseAndCalculate(String minuend, String subtrahend) {
         Long valueOne = Long.parseLong(minuend);
         Long valueTwo = Long.parseLong(subtrahend);
@@ -42,6 +53,15 @@ public class ComplementCalculator {
                 ? calculate(valueOne, valueTwo, false) : calculate(valueTwo, valueOne, true);
     }
 
+    /**
+     * Performs the subtraction of the given numbers using only addition.
+     *
+     * @param minuend The number to subtract from
+     * @param subtrahend The number to be subtracted
+     * @param negative A boolean to indicate whether the operation will produce
+     * a negative number
+     * @return
+     */
     private Long calculate(Long minuend, Long subtrahend, boolean negative) {
         Long subtrahendComplement = getNinesComplement(subtrahend, String.valueOf(minuend).length());
         Long undroppedAnswer = (minuend + subtrahendComplement) + 1;
@@ -52,13 +72,27 @@ public class ComplementCalculator {
         return Long.parseLong(signed);
     }
 
+    /**
+     * Returns true if the string matches the numeric regular expression
+     *
+     * @param s
+     * @return
+     */
     private boolean isNumeric(String s) {
         if (s == null) {
             return false;
         }
-        return s.matches("[0-9]+");
+        return s.matches("^[0-9]+$");
     }
 
+    /**
+     * Converts a {@link Long} into nine's complement with padding based on the
+     * length of the minuend
+     *
+     * @param subtrahend The number to take the complement of
+     * @param length The length of the minuend
+     * @return The complement of the number
+     */
     private Long getNinesComplement(Long subtrahend, int length) {
         int padding = length - String.valueOf(subtrahend).length();
         String complment = "";
@@ -72,6 +106,13 @@ public class ComplementCalculator {
         return Long.parseLong(complment);
     }
 
+    /**
+     * Finds nine's complement of the given character if the character is
+     * numeric. Returns 0 otherwise.
+     *
+     * @param c The character to find the complement of
+     * @return The complement of the parameter
+     */
     private char getNinesComplement(char c) {
         switch (c) {
             case '0':
