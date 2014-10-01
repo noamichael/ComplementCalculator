@@ -59,7 +59,7 @@ public class ComplementCalculator {
         return s.matches("[0-9]+");
     }
 
-    public Long getNinesComplement(Long subtrahend, int length) {
+    private Long getNinesComplement(Long subtrahend, int length) {
         int padding = length - String.valueOf(subtrahend).length();
         String complment = "";
         for (int i = 0; i < padding; i++) {
@@ -72,7 +72,7 @@ public class ComplementCalculator {
         return Long.parseLong(complment);
     }
 
-    public char getNinesComplement(char c) {
+    private char getNinesComplement(char c) {
         switch (c) {
             case '0':
                 return '9';
