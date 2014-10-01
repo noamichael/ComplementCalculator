@@ -16,18 +16,18 @@ public class ComplementCalculator {
             if (minuend.isEmpty()) {
                 break;
             }
-            if (!isNumeric(minuend)) {
+            while (!isNumeric(minuend)) {
                 System.out.println("Minued must be numeric");
-                continue;
+                minuend = sc.nextLine().trim();
             }
             System.out.println("Please enter the subtrahend. Newline terminates.");
             String subtrahend = sc.nextLine().trim();
             if (subtrahend.isEmpty()) {
                 break;
             }
-            if (!isNumeric(subtrahend)) {
+            while (!isNumeric(subtrahend)) {
                 System.out.println("Subtrahend must be numeric");
-                continue;
+                subtrahend = sc.nextLine().trim();
             }
             System.out.println("The answer is " + parseAndCalculate(minuend, subtrahend));
 
