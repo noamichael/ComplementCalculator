@@ -29,27 +29,27 @@ public class ComplementCalculator {
                 System.out.println("Subtrahend must be numeric");
                 continue;
             }
-            System.out.println(parseAndCalculate(minuend, subtrahend));
+            System.out.println("The answer is " + parseAndCalculate(minuend, subtrahend));
 
         }
 
     }
 
-    private Integer parseAndCalculate(String minuend, String subtrahend) {
-        Integer valueOne = Integer.parseInt(minuend);
-        Integer valueTwo = Integer.parseInt(subtrahend);
+    private Long parseAndCalculate(String minuend, String subtrahend) {
+        Long valueOne = Long.parseLong(minuend);
+        Long valueTwo = Long.parseLong(subtrahend);
         return valueOne > valueTwo
                 ? calculate(valueOne, valueTwo, false) : calculate(valueTwo, valueOne, true);
     }
 
-    private Integer calculate(Integer minuend, Integer subtrahend, boolean negative) {
-        Integer subtrahendComplement = getNinesComplement(subtrahend, String.valueOf(minuend).length());
-        Integer undroppedAnswer = (minuend + subtrahendComplement) + 1;
+    private Long calculate(Long minuend, Long subtrahend, boolean negative) {
+        Long subtrahendComplement = getNinesComplement(subtrahend, String.valueOf(minuend).length());
+        Long undroppedAnswer = (minuend + subtrahendComplement) + 1;
         String signed = String.valueOf(undroppedAnswer).substring(1);
         if (negative) {
             signed = "-" + signed;
         }
-        return Integer.parseInt(signed);
+        return Long.parseLong(signed);
     }
 
     private boolean isNumeric(String s) {
@@ -59,7 +59,7 @@ public class ComplementCalculator {
         return s.matches("[0-9]+");
     }
 
-    public Integer getNinesComplement(Integer subtrahend, int length) {
+    public Long getNinesComplement(Long subtrahend, int length) {
         int padding = length - String.valueOf(subtrahend).length();
         String complment = "";
         for (int i = 0; i < padding; i++) {
@@ -69,7 +69,7 @@ public class ComplementCalculator {
         for (char c : subtrahendArray) {
             complment += getNinesComplement(c);
         }
-        return Integer.parseInt(complment);
+        return Long.parseLong(complment);
     }
 
     public char getNinesComplement(char c) {
